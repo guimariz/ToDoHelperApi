@@ -1,6 +1,7 @@
 package com.toodo.api.model;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,13 +27,21 @@ public class Tasks {
 	@Column(name="nome")
 	private String taskName;
 	
+	@NotNull
+	@Size(min=1, max = 10)
+	@Column(name="status")
+	private String status;
+	
+	@NotNull
+	@Column(name="open")
+	private Boolean open;
 	
 	@NotNull
 	@Column(name="data_start")
-	private LocalDateTime taskStart;
+	private LocalTime taskStart;
 	
 	@Column(name="data_final")
-	private LocalDateTime taskFinal;
+	private LocalTime taskFinal;
 	
 	@NotNull
 	@Column(name="tempo_task")
@@ -41,6 +50,18 @@ public class Tasks {
 	@NotNull
 	@Column(name="tempo_descanso")
 	private Long restTimer;
+	
+	@NotNull
+	@Column(name="is_ready")
+	private Boolean isReady;
+	
+	public Boolean getIsReady() {
+		return isReady;
+	}
+
+	public void setIsReady(Boolean isReady) {
+		this.isReady = isReady;
+	}
 
 	public Long getId() {
 		return id;
@@ -57,20 +78,37 @@ public class Tasks {
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
 	}
+	
 
-	public LocalDateTime getTaskStart() {
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Boolean getOpen() {
+		return open;
+	}
+
+	public void setOpen(Boolean open) {
+		this.open = open;
+	}
+
+	public LocalTime getTaskStart() {
 		return taskStart;
 	}
 
-	public void setTaskStart(LocalDateTime taskStart) {
+	public void setTaskStart(LocalTime taskStart) {
 		this.taskStart = taskStart;
 	}
 
-	public LocalDateTime getTaskFinal() {
+	public LocalTime getTaskFinal() {
 		return taskFinal;
 	}
 
-	public void setTaskFinal(LocalDateTime taskFinal) {
+	public void setTaskFinal(LocalTime taskFinal) {
 		this.taskFinal = taskFinal;
 	}
 
