@@ -56,10 +56,25 @@ public class TasksResource {
         return ResponseEntity.ok(tasksSalva);
     }
 	
+	@PutMapping("/all")
+	public List<Tasks> atualizarTudo() {
+		List<Tasks> tasks = tasksRepository.findAll();
+
+		tasks.forEach(t -> t.setStatus("doing"));
+
+		return tasksRepository.saveAll(tasks);
+	}
+	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long id) {
 		tasksRepository.deleteById(id);
+	}
+	
+	@DeleteMapping("/all")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void removerAll() {
+		tasksRepository.deleteAll();
 	}
 
 }
